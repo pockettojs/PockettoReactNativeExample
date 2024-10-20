@@ -22,7 +22,7 @@ export function Input({
         value={value}
         onChangeText={onChange}
         className={cn(
-            "border rounded-md px-4 border-slate-300 h-12 w-full",
+            "border rounded-md px-4 border-slate-300 h-12 w-full text-black",
             className,
             disabled && "opacity-50"
         )}

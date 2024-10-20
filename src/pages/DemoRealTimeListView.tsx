@@ -67,27 +67,27 @@ export function DemoRealTimeListView({
                     }}
                 >
                     <View className="flex flex-row justify-between">
-                        <View className="w-8 h-8 rounded-full" style={{ backgroundColor: invoice.color }}></View>
-                        <Text className="text-lg">{invoice.customerName}</Text>
+                        <View className="text-black  w-8 h-8 rounded-full" style={{ backgroundColor: invoice.color }}></View>
+                        <Text className="text-black text-lg">{invoice.customerName}</Text>
                     </View>
                     <View className="h-2"></View>
                     <View className="flex flex-row justify-between">
-                        <Text className="mt-1 text-md font-semibold">Subtotal:</Text>
-                        <Text className="text-lg text-right">{formatNumber(invoice.subtotalAmount)}</Text>
+                        <Text className="text-black  mt-1 text-md font-semibold">Subtotal:</Text>
+                        <Text className="text-black text-lg text-right">{formatNumber(invoice.subtotalAmount)}</Text>
                     </View>
                     <View className="flex flex-row justify-between">
-                        <Text className="mt-1 text-md font-semibold">Tax Amount:</Text>
-                        <Text className="text-lg text-right">{formatNumber(invoice.taxAmount)}</Text>
+                        <Text className="text-black  mt-1 text-md font-semibold">Tax Amount:</Text>
+                        <Text className="text-black text-lg text-right">{formatNumber(invoice.taxAmount)}</Text>
                     </View>
                     <View className="flex flex-row justify-between">
-                        <Text className="mt-1 text-md font-semibold">Grand Total:</Text>
-                        <Text className="text-lg text-right">{formatNumber(invoice.totalAmount)}</Text>
+                        <Text className="text-black  mt-1 text-md font-semibold">Grand Total:</Text>
+                        <Text className="text-black text-lg text-right">{formatNumber(invoice.totalAmount)}</Text>
                     </View>
 
                     <View className="h-2"></View>
                     <View className="flex flex-row justify-between">
-                        <Text className="mt-1 text-md font-semibold">Paid Amount:</Text>
-                        <Text className="text-lg font-semibold text-right">{formatNumber(invoice.paidAmount)}</Text>
+                        <Text className="text-black  mt-1 text-md font-semibold">Paid Amount:</Text>
+                        <Text className="text-black text-lg font-semibold text-right">{formatNumber(invoice.paidAmount)}</Text>
                     </View>
                     <ProgressionBar percentage={invoice.paidPercentage}></ProgressionBar>
                 </Pressable>)

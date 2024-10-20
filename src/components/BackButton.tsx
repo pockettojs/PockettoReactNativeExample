@@ -1,7 +1,6 @@
-// import { ChevronLeft } from 'src/lib/icons/lucide/ChevronLeft';
 import { View, Text, Pressable, Animated } from "react-native";
 import React, { forwardRef, useRef } from 'react';
-import { ChevronLeft } from "lucide-react-native";
+import { ChevronLeft } from "src/components/icons/ChevronLeft";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 export const BackButton = forwardRef<React.ElementRef<typeof Pressable>, { onPress: () => void }>(
@@ -10,8 +9,8 @@ export const BackButton = forwardRef<React.ElementRef<typeof Pressable>, { onPre
         const animateScale = (toValue: number) => {
             Animated.timing(scale, {
                 toValue,
-                duration: 100, // Duration of the animation in milliseconds
-                useNativeDriver: true, // Use native driver for better performance
+                duration: 100,
+                useNativeDriver: true,
             }).start();
         };
 
@@ -26,7 +25,7 @@ export const BackButton = forwardRef<React.ElementRef<typeof Pressable>, { onPre
                 onPressIn={() => animateScale(0.9)}
                 onPressOut={() => animateScale(1)}
             >
-                <ChevronLeft className='w-8 h-8 text-react-500' />
+                <ChevronLeft className='w-8 h-8 text-react-700' />
                 <View className="w-1"></View>
                 <Text className="text-react-700 font-medium text-xl">Back</Text>
             </AnimatedPressable>
