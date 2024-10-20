@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useCallback, useEffect, useState } from "react";
-import { Linking, Pressable, ScrollView, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
 import { ProgressionBar } from "src/components/ProgressionBar";
 import { useRealtimeList } from "src/hooks/useRealtimeList";
