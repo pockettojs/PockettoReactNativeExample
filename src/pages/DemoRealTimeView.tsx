@@ -2,7 +2,7 @@ import { useRoute } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CheckCircle } from "src/components/icons/CheckCircle";
 import { InfoIcon } from "src/components/icons/InfoIcon";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { Alert } from "src/components/Alert";
 import { BackButton } from "src/components/BackButton";
@@ -35,17 +35,24 @@ export function DemoRealTimeView({
         }
     }, [invoice._meta._rev, rev, saved]);
 
+    const save = useCallback(async () => {
+        invoice.subtotalAmount = Number(invoice.subtotalAmount);
+        invoice.taxRate = Number(invoice.taxRate);
+        invoice.taxAmount = Number(invoice.taxAmount);
+        invoice.totalAmount = Number(invoice.totalAmount);
+        invoice.paidAmount = Number(invoice.paidAmount);
+        setInvoice(await invoice.save());
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+    }, [invoice]);
+
     return <>
         <Alert type='success' title="Invoice saved!" show={saved} icon={<CheckCircle width={20} height={20} className="mt-0.5 text-white mr-4" />} />
         <Alert type='info' title="Invoice was updated by other user!" show={beingUpdated} icon={<InfoIcon width={20} height={20} className="mt-0.5 text-white mr-4" />} />
         <View className="bg-white h-full px-4">
             <View className="flex flex-row justify-between">
                 <BackButton onPress={() => navigation.goBack()} />
-                <Button label="Save" onPress={async () => {
-                    await invoice.save();
-                    setSaved(true);
-                    setTimeout(() => setSaved(false), 3000);
-                }} />
+                <Button label="Save" onPress={save} />
             </View>
             <View className="flex flex-row justify-between">
                 <View className="w-[10%]">
