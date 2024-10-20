@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useCallback, useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Linking, Pressable, ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
 import { ProgressionBar } from "src/components/ProgressionBar";
 import { useRealtimeList } from "src/hooks/useRealtimeList";
@@ -26,8 +26,7 @@ export function DemoRealTimeListView({
             .then((result) => setInitList(result));
     }, []);
 
-    return <View className="w-full h-full bg-white">
-        <Text className="p-4 text-2xl font-medium">React Native + Pocketto</Text>
+    return <View className="bg-white">
         <View className="flex flex-row gap-4 justify-end mr-4 mb-4">
             <Button label="Add New" onPress={() => {
                 navigation.navigate('realtime/:id', { id: 'new' });
@@ -60,7 +59,13 @@ export function DemoRealTimeListView({
         </View>
         <ScrollView>
             {
-                salesInvoices.map((invoice, index) => <View key={index} className="border-t border-slate-300 p-4">
+                salesInvoices.map((invoice, index) => <Pressable
+                    key={index}
+                    className="border-t border-slate-300 p-4"
+                    onPress={() => {
+                        navigation.navigate('realtime/:id', { id: invoice.id });
+                    }}
+                >
                     <View className="flex flex-row justify-between">
                         <View className="w-8 h-8 rounded-full" style={{ backgroundColor: invoice.color }}></View>
                         <Text className="text-lg">{invoice.customerName}</Text>
@@ -85,8 +90,15 @@ export function DemoRealTimeListView({
                         <Text className="text-lg font-semibold text-right">{formatNumber(invoice.paidAmount)}</Text>
                     </View>
                     <ProgressionBar percentage={invoice.paidPercentage}></ProgressionBar>
-                </View>)
+                </Pressable>)
             }
         </ScrollView>
+        {
+            salesInvoices.length === 0 && <View className="flex justify-center items-center h-[100%]">
+                <Text className="text-lg text-center px-8 text-slate-500 mt-[-200px]">
+                    No data available, click the button above to add fake data
+                </Text>
+            </View>
+        }
     </View>
 }
