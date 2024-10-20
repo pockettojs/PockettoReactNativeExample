@@ -13,41 +13,27 @@ export function Alert({
     title: string;
     icon?: React.ReactNode;
 }) {
-    const opacity = useRef(new Animated.Value(0)).current;
     const translateY = useRef(new Animated.Value(2000)).current;
 
     useEffect(() => {
         if (show) {
-            Animated.timing(opacity, {
-                toValue: 1,
-                duration: 1500,
-                useNativeDriver: true,
-            }).start();
-
             Animated.timing(translateY, {
                 toValue: 4,
-                duration: 1500,
+                duration: 800,
                 useNativeDriver: true,
             }).start();
         } else {
-            Animated.timing(opacity, {
-                toValue: 0,
-                duration: 1500,
-                useNativeDriver: true,
-            }).start();
-
             Animated.timing(translateY, {
                 toValue: 2000,
-                duration: 1500,
+                duration: 800,
                 useNativeDriver: true,
             }).start();
         }
-    }, [show, opacity, translateY]);
+    }, [show, translateY]);
 
     return (
         <Animated.View
             style={{
-                opacity: opacity,
                 transform: [{ translateY }],
             }}
             className={cn(
