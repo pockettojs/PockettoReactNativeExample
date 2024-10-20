@@ -1,7 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
+import { LinearColorChangePressable } from "src/components/LinearColorChangePressable";
 import { ProgressionBar } from "src/components/ProgressionBar";
 import { useRealtimeList } from "src/hooks/useRealtimeList";
 import { SalesInvoice } from "src/models/SalesInvoice.p";
@@ -12,7 +14,10 @@ export function DemoRealTimeListView({
 }: {
     navigation: NativeStackScreenProps<any>['navigation'];
 }) {
-    const salesInvoices = useRealtimeList(SalesInvoice);
+    const [changedItem, setChangedItem] = useState<SalesInvoice>();
+    const salesInvoices = useRealtimeList(SalesInvoice, {
+        onItemChange: value => setChangedItem(value),
+    });
 
     return <View className="bg-white">
         <View className="flex flex-row gap-4 justify-end mr-4 mb-4">
@@ -47,8 +52,10 @@ export function DemoRealTimeListView({
         </View>
         <ScrollView>
             {
-                salesInvoices.map((invoice, index) => <Pressable
+                salesInvoices.map((invoice, index) => <LinearColorChangePressable
                     key={index}
+                    start={changedItem?.id === invoice.id}
+                    transitionColor={invoice.color}
                     className="border-t border-slate-300 p-4"
                     onPress={() => {
                         navigation.navigate('realtime/:id', { id: invoice.id });
@@ -78,7 +85,7 @@ export function DemoRealTimeListView({
                         <Text className="text-black text-lg font-semibold text-right">{formatNumber(invoice.paidAmount)}</Text>
                     </View>
                     <ProgressionBar percentage={invoice.paidPercentage}></ProgressionBar>
-                </Pressable>)
+                </LinearColorChangePressable>)
             }
         </ScrollView>
         {
