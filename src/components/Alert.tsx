@@ -29,7 +29,7 @@ export function Alert({
     >
         <View className="flex flex-row">
             {icon}
-            <Text className="text-white font-medium">{title}</Text>
+            <Text className="mt-0.5 text-[16px] text-white font-medium">{title}</Text>
         </View>
     </Animated.View>;
 }
