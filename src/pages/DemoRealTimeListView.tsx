@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
 import { ProgressionBar } from "src/components/ProgressionBar";
@@ -13,18 +12,7 @@ export function DemoRealTimeListView({
 }: {
     navigation: NativeStackScreenProps<any>['navigation'];
 }) {
-    const [initList, setInitList] = useState<SalesInvoice[]>([]);
-    const salesInvoices = useRealtimeList(SalesInvoice, {
-        value: initList,
-        order: 'desc',
-    });
-
-    useEffect(() => {
-        SalesInvoice.query()
-            .orderBy('createdAt', 'desc')
-            .get()
-            .then((result) => setInitList(result));
-    }, []);
+    const salesInvoices = useRealtimeList(SalesInvoice);
 
     return <View className="bg-white">
         <View className="flex flex-row gap-4 justify-end mr-4 mb-4">
