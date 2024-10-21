@@ -23,7 +23,7 @@
     "lucide-react-native": "^0.453.0",
     "nativewind": "^4.1.17",
     "path-browserify": "^1.0.1",
-    "pocketto": "^0.1.5",
+    "pocketto": "^0.1.6",
     "pocketto-react": "^1.0.0",
     "pouchdb-adapter-react-native-sqlite": "^3.0.1",
     "process": "^0.11.10",
