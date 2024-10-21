@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Pressable } from 'react-native';
 import { cn } from '../utils/cn';
 
-export const LinearColorChangePressable = ({
+export const HighlightablePressable = ({
     start,
-    transitionColor = '#00ff00',
+    color = '#00ff00',
     children,
     className,
     onPress,
 }: {
     start: boolean;
-    transitionColor?: string;
+    color?: string;
     children?: React.ReactNode;
     className?: string;
     onPress?: () => void;
@@ -41,7 +41,7 @@ export const LinearColorChangePressable = ({
 
     const backgroundColor = animatedValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [initialColor, transitionColor],
+        outputRange: [initialColor, color],
     });
 
     return (

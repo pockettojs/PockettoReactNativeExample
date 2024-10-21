@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
-import { LinearColorChangePressable } from "src/components/LinearColorChangePressable";
+import { HighlightablePressable } from "src/components/HighlightablePressable";
 import { ProgressionBar } from "src/components/ProgressionBar";
 import { useRealtimeList } from "src/hooks/useRealtimeList";
 import { SalesInvoice } from "src/models/SalesInvoice.p";
@@ -16,6 +16,7 @@ export function DemoRealTimeListView({
 }) {
     const [changedItem, setChangedItem] = useState<SalesInvoice>();
     const salesInvoices = useRealtimeList(SalesInvoice, {
+        animationDelay: 2000,
         onItemChange: value => setChangedItem(value),
     });
 
@@ -52,10 +53,10 @@ export function DemoRealTimeListView({
         </View>
         <ScrollView>
             {
-                salesInvoices.map((invoice, index) => <LinearColorChangePressable
+                salesInvoices.map((invoice, index) => <HighlightablePressable
                     key={index}
                     start={changedItem?.id === invoice.id}
-                    transitionColor={invoice.color}
+                    color={invoice.color}
                     className="border-t border-slate-300 p-4"
                     onPress={() => {
                         navigation.navigate('realtime/:id', { id: invoice.id });
@@ -85,7 +86,7 @@ export function DemoRealTimeListView({
                         <Text className="text-black text-lg font-semibold text-right">{formatNumber(invoice.paidAmount)}</Text>
                     </View>
                     <ProgressionBar percentage={invoice.paidPercentage}></ProgressionBar>
-                </LinearColorChangePressable>)
+                </HighlightablePressable>)
             }
         </ScrollView>
         {
