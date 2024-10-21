@@ -13,10 +13,6 @@ import { DatabaseManager, p } from "pocketto";
 const SQLiteAdapter = SQLiteAdapterFactory(SQLite);
 PouchDB.plugin(SQLiteAdapter);
 
-// polyfill for base64 encoding/decoding
-if (typeof btoa === 'undefined') global.btoa = base64.encode;
-if (typeof atob === 'undefined') global.atob = base64.decode;
-
 p.setEnvironment("react-native");
 p.setIdMethod('timestamp');
 DatabaseManager.connect('default', {
