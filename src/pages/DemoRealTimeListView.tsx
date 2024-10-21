@@ -1,11 +1,11 @@
 import { faker } from "@faker-js/faker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useRealtimeList } from "pocketto-react";
 import { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Button } from "src/components/Button";
 import { HighlightablePressable } from "src/components/HighlightablePressable";
 import { ProgressionBar } from "src/components/ProgressionBar";
-import { useRealtimeList } from "src/hooks/useRealtimeList";
 import { SalesInvoice } from "src/models/SalesInvoice.p";
 import { formatNumber } from "src/utils/number";
 
@@ -56,7 +56,7 @@ export function DemoRealTimeListView({
                 salesInvoices.map((invoice, index) => <HighlightablePressable
                     key={index}
                     start={changedItem?.id === invoice.id}
-                    color={invoice.color}
+                    color={'#B3ECFF'}
                     className="border-t border-slate-300 p-4"
                     onPress={() => {
                         navigation.navigate('realtime/:id', { id: invoice.id });

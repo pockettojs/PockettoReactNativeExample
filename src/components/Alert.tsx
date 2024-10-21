@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Text, View } from "react-native";
+import { Animated, Text, useWindowDimensions, View } from "react-native";
 import { cn } from "../utils/cn";
 
 export function Alert({
@@ -13,7 +13,8 @@ export function Alert({
     title: string;
     icon?: React.ReactNode;
 }) {
-    const translateY = useRef(new Animated.Value(2000)).current;
+    const { height } = useWindowDimensions();
+    const translateY = useRef(new Animated.Value(height + 200)).current;
 
     useEffect(() => {
         if (show) {
@@ -24,7 +25,7 @@ export function Alert({
             }).start();
         } else {
             Animated.timing(translateY, {
-                toValue: 2000,
+                toValue: height + 200,
                 duration: 800,
                 useNativeDriver: true,
             }).start();

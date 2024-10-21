@@ -8,10 +8,10 @@ import { Alert } from "src/components/Alert";
 import { BackButton } from "src/components/BackButton";
 import { Button } from "src/components/Button";
 import { Input } from "src/components/Input";
-import { useRealtime } from "src/hooks/useRealtime";
 import { SalesInvoice } from "src/models/SalesInvoice.p";
 import { cn } from "src/utils/cn";
 import { formatNumber } from "src/utils/number";
+import { useRealtime } from "pocketto-react";
 
 export function DemoRealTimeView({
     navigation,
