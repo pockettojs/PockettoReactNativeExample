@@ -41,9 +41,9 @@ export function DemoRealTimeView({
         invoice.taxAmount = Number(invoice.taxAmount);
         invoice.totalAmount = Number(invoice.totalAmount);
         invoice.paidAmount = Number(invoice.paidAmount);
-        setInvoice(await invoice.save());
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
+        setInvoice(await invoice.save());
     }, [invoice]);
 
     return <>
